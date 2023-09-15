@@ -17,7 +17,7 @@ struct LoginLoadingView: View {
             .padding()
             .navigationBarBackButtonHidden(true)
             .onAppear{
-                
+                getUserID()
             }
         }
     }
