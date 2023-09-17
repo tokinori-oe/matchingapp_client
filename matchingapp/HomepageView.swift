@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct HomepageView: View {
-    @EnvironmentObject var afterloginModel : AfterLoginModel
+    @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var userID : Int?
     
     var body: some View {
         NavigationStack{
-            TabView(selection: $afterloginModel.selectedTag) {
+            TabView(selection: $wholeappafterloginmodel.selectedTag) {
                 AccountListView().tabItem { Button("アカウント情報"){
                     
                 }
@@ -23,7 +23,7 @@ struct HomepageView: View {
                 ChatView().tabItem{Text("チャット")}.tag(4)
                 FeedView().tabItem{Text("ホーム")}.tag(5)
             }.navigationBarBackButtonHidden(true)
-                .navigationDestination(isPresented: $afterloginModel.GoToProfileChangeView){
+                .navigationDestination(isPresented: $wholeappafterloginmodel.GoToProfileChangeView){
                     ProfileChangeView()
                 }
 

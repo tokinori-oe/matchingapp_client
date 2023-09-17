@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MatchUpView: View {
     @State var getRecommendationInfo = false
-    @EnvironmentObject var afterloginModel : AfterLoginModel
-    @EnvironmentObject var accountcheckmodel: AccountCheckModel
+    @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var userProfiles: [UserProfileData] = []
     @State private var isButtonClicked = false
     var body: some View {
@@ -36,7 +35,7 @@ struct MatchUpView: View {
             )
         }
         .onAppear{
-           checkRecommendation()
+            GetRecommendation()
         }
     }
     
@@ -44,49 +43,14 @@ struct MatchUpView: View {
         
     }
     
-    func checkRecommendation(){
-        guard let url = URL(string:"http://127.0.0.1:8000/api/account_check/")else{
-            return
-        }
-        
-        if let token = UserDefaults.standard.string(forKey: "AuthToken"){
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.addValue("Token \(token)", forHTTPHeaderField: "Authorization")
-            
-            //HTTPリクエストを送信
-            URLSession.shared.dataTask(with:request){data, response, error in
-                if let data = data{
-                    
-                    do {
-                        // JSONデコードを試行
-                        if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                        let userId = jsonObject["user_id"] as? Int {
-                            DispatchQueue.main.async {
-                                print("user_id: \(userId)")
-                                accountcheckmodel.userID = userId // userIDを更新
-                                GetRecommendation()
-                            }
-                        }
-                    } catch {
-                        print("JSONデコードエラー: \(error)")
-                                           
-                    }
-                }
-            }.resume()
-        }else{
-            return
-        }
-    }
-    
     func GetRecommendation(){
         
-        let account_id = accountcheckmodel.userID ?? 0
+        let account_id = wholeappafterloginmodel.userID ?? 0
         guard let get_recommendation_url = URL(string:"http://127.0.0.1:8000/api/get_recommendation/?user_id=\(account_id)")else{
             return
         }
         
-        if let id = accountcheckmodel.userID{
+        if let id = wholeappafterloginmodel.userID{
             var request = URLRequest(url: get_recommendation_url)
             request.httpMethod = "GET"
             

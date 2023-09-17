@@ -9,7 +9,9 @@ import SwiftUI
 
 struct EachRecommendationView: View {
     var profile: UserProfileData
-    @EnvironmentObject var requestmodel : RequestModel
+    @State private var isButtonClicked = false
+    @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
+
     
     var body: some View {
         VStack{
@@ -17,7 +19,7 @@ struct EachRecommendationView: View {
             Text("学校名: \(profile.school_name)")
             Text("プロフィール: \(profile.profile ?? "")")
             Button("リクエスト"){
-                requestmodel.isButtonClicked = true
+                isButtonClicked = true
             }
                 .buttonBorderShape(.roundedRectangle)
                 .buttonStyle(.borderedProminent)

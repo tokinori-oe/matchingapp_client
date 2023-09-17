@@ -22,6 +22,7 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     private var socket: WebSocket?
     @Published var receivedMessage: String = ""
     @Published var receiver: Int = 0
+    @Published var isConnected = false
     
     init() {
         setupWebSocket()
@@ -50,9 +51,9 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient){
         switch event {
         case .connected:
-            print("WebSocket Connected")
+            isConnected = true
         case .disconnected(_, _): //切断の原因や詳細情報は、パラメータとして提供されますが、コード内でそれらの情報を使用しない場合、_（アンダースコア）を使用して無視することができる
-            print("WebSocket Disconnected")
+            isConnected = false
         case .text(let string): //WebSocketManagerがテキストメッセージを受信したときに、そのメッセージを受信プロパティである receivedMessage に代入
             receivedMessage = string
         default:

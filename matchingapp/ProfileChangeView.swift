@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ProfileChangeView: View {
-    @EnvironmentObject var afterloginModel : AfterLoginModel
-    @EnvironmentObject var accountcheckmodel: AccountCheckModel
+    @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State var isDoneChanged = false
     @State var BackToAccountCheck = false
     var body: some View {
@@ -23,32 +22,32 @@ struct ProfileChangeView: View {
                         .foregroundColor(Color.black)
                     Text("学校名")
                     TextField("学校名", text: Binding(
-                        get: { accountcheckmodel.school_name ?? "" },
-                        set: { accountcheckmodel.school_name = $0 }
+                        get: { wholeappafterloginmodel.school_name ?? "" },
+                        set: { wholeappafterloginmodel.school_name = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .frame(width: 250)
                     Text("学部")
                     TextField("学部", text: Binding(
-                        get: { accountcheckmodel.faculty ?? "" },
-                        set: { accountcheckmodel.faculty = $0 }
+                        get: { wholeappafterloginmodel.faculty ?? "" },
+                        set: { wholeappafterloginmodel.faculty = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .frame(width: 250)
                     Text("学科")
                     TextField("学部", text: Binding(
-                        get: { accountcheckmodel.department ?? "" },
-                        set: { accountcheckmodel.department = $0 }
+                        get: { wholeappafterloginmodel.department ?? "" },
+                        set: { wholeappafterloginmodel.department = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .frame(width: 250)
                     Text("学年")
                     TextField("学年", text: Binding(
-                        get: { accountcheckmodel.grade ?? "" },
-                        set: { accountcheckmodel.grade = $0 }
+                        get: { wholeappafterloginmodel.grade ?? "" },
+                        set: { wholeappafterloginmodel.grade = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -57,8 +56,8 @@ struct ProfileChangeView: View {
                 VStack{
                     Text("趣味")
                     TextField("趣味", text: Binding(
-                        get: { accountcheckmodel.hobbies ?? "" },
-                        set: { accountcheckmodel.hobbies = $0 }
+                        get: { wholeappafterloginmodel.hobbies ?? "" },
+                        set: { wholeappafterloginmodel.hobbies = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -66,8 +65,8 @@ struct ProfileChangeView: View {
                     
                     Text("年齢")
                     TextField("年齢", value: Binding(
-                        get: { accountcheckmodel.age ?? 0 },
-                        set: { accountcheckmodel.age = $0 }
+                        get: { wholeappafterloginmodel.age ?? 0 },
+                        set: { wholeappafterloginmodel.age = $0 }
                     ), formatter: NumberFormatter())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -75,8 +74,8 @@ struct ProfileChangeView: View {
                     
                     Text("性別")
                     TextField("性別", text: Binding(
-                        get: { accountcheckmodel.grade ?? "" },
-                        set: { accountcheckmodel.grade = $0 }
+                        get: { wholeappafterloginmodel.grade ?? "" },
+                        set: { wholeappafterloginmodel.grade = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -84,8 +83,8 @@ struct ProfileChangeView: View {
                     
                     Text("プロフィール")
                     TextField("性別", text: Binding(
-                        get: { accountcheckmodel.gender ?? "" },
-                        set: { accountcheckmodel.gender = $0 }
+                        get: { wholeappafterloginmodel.gender ?? "" },
+                        set: { wholeappafterloginmodel.gender = $0 }
                     ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -102,7 +101,7 @@ struct ProfileChangeView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action:{
-                        afterloginModel.selectedTag = 1
+                        wholeappafterloginmodel.selectedTag = 1
                         BackToAccountCheck = true
                     }){
                         HStack{
@@ -117,21 +116,21 @@ struct ProfileChangeView: View {
     
     func changeprofile(){
         
-        let account_id = accountcheckmodel.userID ?? 0
+        let account_id = wholeappafterloginmodel.userID ?? 0
         guard let change_url = URL(string: "http://127.0.0.1:8000/api/change_accountinfo/?user_id=\(account_id)")else{
             return
         }
         //print(accountcheckmodel.school_name)
         let ChangeDetails : [String:Any] = [
-            "user" : accountcheckmodel.userID,
-            "school_name" : accountcheckmodel.school_name,
-            "faculty" : accountcheckmodel.faculty,
-            "department" : accountcheckmodel.department,
-            "grade" : accountcheckmodel.grade,
-            "hobbies" : accountcheckmodel.hobbies,
-            "age" : accountcheckmodel.age,
-            "gender" : accountcheckmodel.gender,
-            "profile" : accountcheckmodel.profile
+            "user" : wholeappafterloginmodel.userID ?? 0,
+            "school_name" : wholeappafterloginmodel.school_name ?? "",
+            "faculty" : wholeappafterloginmodel.faculty ?? "",
+            "department" : wholeappafterloginmodel.department ?? "",
+            "grade" : wholeappafterloginmodel.grade ?? "",
+            "hobbies" : wholeappafterloginmodel.hobbies ?? "",
+            "age" : wholeappafterloginmodel.age,
+            "gender" : wholeappafterloginmodel.gender ?? "",
+            "profile" : wholeappafterloginmodel.profile ?? ""
         ]
         
         var request = URLRequest(url: change_url)
@@ -155,7 +154,7 @@ struct ProfileChangeView: View {
                         isDoneChanged = false
                     }
                     else{
-                        afterloginModel.selectedTag = 1
+                        wholeappafterloginmodel.selectedTag = 1
                         isDoneChanged = true
                     }
 

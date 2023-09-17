@@ -12,8 +12,6 @@ struct matchingappApp: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
-                .environmentObject(AfterLoginModel()) //これは後で削除
-                .environmentObject(AccountCheckModel())//これも後で削除
                 .environmentObject(WholeAppAfterLoginModel())
         }
     }
