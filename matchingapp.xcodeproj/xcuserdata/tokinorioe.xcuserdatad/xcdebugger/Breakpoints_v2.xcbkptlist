@@ -88,16 +88,48 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "05801549-F17A-441B-B333-AD5B3A4AE8BA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "matchingapp/AccountListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "05801549-F17A-441B-B333-AD5B3A4AE8BA - 5212a36153e05412"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt;&gt;, SwiftUI.Text&gt; in matchingapp.AccountListView.body.getter : some"
+                  moduleName = "matchingapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tokinorioe/Desktop/matchingapp/matchingapp/AccountListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "05801549-F17A-441B-B333-AD5B3A4AE8BA - 5212a36153e05412"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt;&gt;, SwiftUI.Text&gt; in matchingapp.AccountListView.body.getter : some"
+                  moduleName = "matchingapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tokinorioe/Desktop/matchingapp/matchingapp/AccountListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "984">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

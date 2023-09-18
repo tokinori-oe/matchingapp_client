@@ -9,11 +9,9 @@ import SwiftUI
 
 struct AccountListView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @State private var isAccessedToAccountCheck = false
-    @State private var getInfoAboutAccount = false
     var body: some View {
         NavigationStack{
-            if isAccessedToAccountCheck, getInfoAboutAccount{
+            if wholeappafterloginmodel.getInfoAboutAccount{
                 //後々Tableという機能を使って表を書くからプロフィールの情報はオブジェクト配列を使った方が良さそう
                 let school = wholeappafterloginmodel.school_name
                 VStack{

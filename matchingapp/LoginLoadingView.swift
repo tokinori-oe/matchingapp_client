@@ -4,7 +4,6 @@ import Starscream
 //この画面でuser_id, プロフィール情報、websocket接続を行う。全て完了したらHomePageViewに飛ぶ
 struct LoginLoadingView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @State private var getInfoAboutAccount = false
     @ObservedObject private var webSocketManager = WebSocketManager()
     @State private var GoToHomePage = false
     
@@ -23,10 +22,8 @@ struct LoginLoadingView: View {
             .navigationBarBackButtonHidden(true)
             .onAppear{
                 getUserID()
-                getWebSocketConnection()
-                GoToHomePage = getInfoAboutAccount && webSocketManager.isConnected
             }
-            .navigationDestination(isPresented: $GoToHomePage){
+            .navigationDestination(isPresented: $webSocketManager.isConnected){
                 HomepageView()
             }
         }
@@ -55,6 +52,7 @@ struct LoginLoadingView: View {
                                 wholeappafterloginmodel.userID = userId // userIDを更新
                                 webSocketManager.receiver = userId
                                 getUserProfile()
+                                getWebSocketConnection()
                             }
                         }
                     } catch {
@@ -90,10 +88,11 @@ struct LoginLoadingView: View {
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                             DispatchQueue.main.async {
                                 if let error = jsonObject["error"]{
-                                    getInfoAboutAccount = false
+                                    wholeappafterloginmodel.getInfoAboutAccount = false
                                     print(error)
                                 }
                                 else{
+                                    //print("GetProfileDone")
                                     wholeappafterloginmodel.school_name = jsonObject["school_name"] as? String
                                     wholeappafterloginmodel.faculty = jsonObject["faculty"] as? String
                                     wholeappafterloginmodel.department = jsonObject["department"] as? String
@@ -102,7 +101,7 @@ struct LoginLoadingView: View {
                                     wholeappafterloginmodel.age = jsonObject["age"] as? Int
                                     wholeappafterloginmodel.gender = jsonObject["gender"] as? String
                                     wholeappafterloginmodel.grade = jsonObject["grade"] as? String
-                                    getInfoAboutAccount=true
+                                    wholeappafterloginmodel.getInfoAboutAccount=true
                                 }
                             }
                         }
@@ -120,6 +119,7 @@ struct LoginLoadingView: View {
     
     func getWebSocketConnection(){
         webSocketManager.setupWebSocket() //接続？
+        GoToHomePage = wholeappafterloginmodel.getInfoAboutAccount && webSocketManager.isConnected
     }
     
 }

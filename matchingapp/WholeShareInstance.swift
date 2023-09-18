@@ -21,4 +21,5 @@ class WholeAppAfterLoginModel: ObservableObject{
     @Published var selectedTag = 1
     @Published var GoToProfileChangeView = false
     @Published var isAcccessedToMatchUp = false
+    @Published var getInfoAboutAccount = false
 }

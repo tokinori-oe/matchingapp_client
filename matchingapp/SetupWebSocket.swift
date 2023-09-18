@@ -24,12 +24,12 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     @Published var receiver: Int = 0
     @Published var isConnected = false
     
-    init() {
-        setupWebSocket()
-    }
+    //init() {
+        //setupWebSocket()
+    //}
 
     func setupWebSocket() {
-        if let url = URL(string: "ws://localhost:8000/request_path/\(receiver)/") {
+        if let url = URL(string: "ws://localhost:8080/request_path/\(receiver)/") {
             socket = WebSocket(request: URLRequest(url: url))
             socket?.delegate = self // WebSocketManagerをWebSocketDelegateに設定
             //StarscreamではWebsocketクラスが準備されており、WebSocket インスタンスの connect() メソッドを呼び出し、WebSocketサーバーへの実際の接続を試みる。接続が確立されると、WebSocketManagerの didReceive(event: WebSocketEvent, client: WebSocketClient) メソッドが呼び出され、接続状態が変化したことを検出することができる。
