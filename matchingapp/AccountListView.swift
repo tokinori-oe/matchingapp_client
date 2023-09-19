@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccountListView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
+    @State private var LogoutButtonClicked = true
     var body: some View {
         NavigationStack{
             if wholeappafterloginmodel.getInfoAboutAccount{
@@ -16,9 +17,23 @@ struct AccountListView: View {
                 let school = wholeappafterloginmodel.school_name
                 VStack{
                     Text("school_name: \(wholeappafterloginmodel.school_name ?? "エラー起きてるよん")")
-                    Button("プロフィール編集はこちら"){
-                        wholeappafterloginmodel.GoToProfileChangeView = true
+                    HStack{
+                        Button("プロフィール編集はこちら"){
+                            wholeappafterloginmodel.GoToProfileChangeView = true
+                        }
+                        Button("ログアウト"){
+                            LogoutButtonClicked = true
+                        }
                     }
+                }.alert(isPresented: $wholeappafterloginmodel.GoToLogout){
+                    Alert(title: Text("本当にログアウトしますか？"),
+                          primaryButton: .default(Text("ログアウト"), action: {
+                        wholeappafterloginmodel.GoToLogout = true
+                    }),
+                          secondaryButton: .cancel(Text("キャンセル"),action:{
+                        wholeappafterloginmodel.GoToLogout = false
+                    })
+                    )
                 }
                 
             }

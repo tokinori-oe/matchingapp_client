@@ -22,10 +22,15 @@ struct HomepageView: View {
                 NotificationView().tabItem { Text("通知")}.tag(3)
                 ChatView().tabItem{Text("チャット")}.tag(4)
                 FeedView().tabItem{Text("ホーム")}.tag(5)
-            }.navigationBarBackButtonHidden(true)
-                .navigationDestination(isPresented: $wholeappafterloginmodel.GoToProfileChangeView){
-                    ProfileChangeView()
-                }
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $wholeappafterloginmodel.GoToProfileChangeView){
+                ProfileChangeView()
+            }
+            .navigationDestination(isPresented: $wholeappafterloginmodel.GoToLogout){
+                LogoutLoadingView()
+            }
+            
 
             //.navigationBarHidden(true)
         }
