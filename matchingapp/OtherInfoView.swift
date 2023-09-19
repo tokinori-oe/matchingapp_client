@@ -24,12 +24,15 @@ struct OtherInfoView: View {
                 Text("年齢(任意)")
                 
                 TextField("年齢", text: $authViewModel.age)
+                    .frame(width:400.0)
+                    .keyboardType(.numberPad)
                 Text("趣味(任意)")
                 TextField("趣味", text: $authViewModel.hobbies)
-                    .frame(height: 200.0)
+                    .frame(width:400.0, height: 200.0, alignment:.top)
+                    
                 Text("プロフィール(任意)")
                 TextField("プロフィール", text: $authViewModel.profile)
-                    .frame(height: 300.0)
+                    .frame(width:400.0, height: 300.0, alignment: .top)
                 Button("確認画面へ"){
                     isRegistered = true
                 }
