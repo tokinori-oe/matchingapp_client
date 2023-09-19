@@ -30,9 +30,7 @@ struct HomepageView: View {
             .navigationDestination(isPresented: $wholeappafterloginmodel.GoToLogout){
                 LogoutLoadingView()
             }
-            
-
-            //.navigationBarHidden(true)
+            .navigationBarHidden(true)
         }
     }
     
