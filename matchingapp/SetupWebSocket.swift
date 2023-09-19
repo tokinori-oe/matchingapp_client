@@ -23,6 +23,7 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     @Published var receivedMessage: String = ""
     @Published var receiver: Int = 0
     @Published var isConnected = false
+    @Published var disConnected = true
     
     //init() {
         //setupWebSocket()
@@ -36,6 +37,11 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
             socket?.connect()
         }
     }
+    
+    func disconnectWebSocket(){
+        socket?.disconnect()
+    }
+    
     func sendRequest(sender: Int, receiver: Int) {
         let requestData: [String: Int] = [
             "sender" : sender,
@@ -53,8 +59,10 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
         switch event {
         case .connected:
             isConnected = true
+            disConnected = false
         case .disconnected(_, _): //切断の原因や詳細情報は、パラメータとして提供されますが、コード内でそれらの情報を使用しない場合、_（アンダースコア）を使用して無視することができる
             isConnected = false
+            disConnected = true
         case .text(let string): //WebSocketManagerがテキストメッセージを受信したときに、そのメッセージを受信プロパティである receivedMessage に代入
             receivedMessage = string
         default:
