@@ -5,7 +5,7 @@ import Starscream
 struct LoginLoadingView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @ObservedObject private var webSocketManager = WebSocketManager()
-    @State private var GoToHomePage = false
+    @State private var GoToHomepage = false
     
     var body: some View {
         NavigationStack{
@@ -118,8 +118,7 @@ struct LoginLoadingView: View {
     }
     
     func getWebSocketConnection(){
-        webSocketManager.setupWebSocket() //接続？
-        GoToHomePage = wholeappafterloginmodel.getInfoAboutAccount && webSocketManager.isConnected
+        webSocketManager.setupWebSocket() //接続
     }
     
 }

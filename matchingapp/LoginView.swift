@@ -8,8 +8,8 @@
 import SwiftUI
 
 
-
 struct LoginView: View {
+    @StateObject var wholeappafterloginmodel = WholeAppAfterLoginModel() //wholeappafterloginmodelを初期化
     @State var username = ""
     @State var password=""
     @State var message=""
@@ -59,9 +59,11 @@ struct LoginView: View {
             }
                 .navigationDestination(isPresented: $isLoggedin){
                 LoginLoadingView()
+                        .environmentObject(wholeappafterloginmodel)
                 //HomepageView()
                
-            } .navigationBarBackButtonHidden(true)
+            }
+            .navigationBarBackButtonHidden(true)
         }
     }
     
@@ -109,11 +111,5 @@ struct LoginView: View {
             }
         }.resume()
         
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }
