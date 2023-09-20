@@ -11,7 +11,6 @@ struct EachRecommendationView: View {
     var profile: UserProfileData
     @State private var isButtonClicked = false
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-
     
     var body: some View {
         VStack{

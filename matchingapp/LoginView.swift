@@ -9,11 +9,11 @@ import SwiftUI
 
 
 struct LoginView: View {
-    @StateObject var wholeappafterloginmodel = WholeAppAfterLoginModel() //wholeappafterloginmodelを初期化
     @State var username = ""
     @State var password=""
     @State var message=""
     @State var isLoggedin = false
+    @StateObject var wholeappafterloginmodel = WholeAppAfterLoginModel()
     
     var body: some View {
         NavigationStack{
@@ -59,9 +59,7 @@ struct LoginView: View {
             }
                 .navigationDestination(isPresented: $isLoggedin){
                 LoginLoadingView()
-                        .environmentObject(wholeappafterloginmodel)
-                //HomepageView()
-               
+                .environmentObject(wholeappafterloginmodel)
             }
             .navigationBarBackButtonHidden(true)
         }

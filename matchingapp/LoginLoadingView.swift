@@ -4,7 +4,7 @@ import Starscream
 //この画面でuser_id, プロフィール情報、websocket接続を行う。全て完了したらHomePageViewに飛ぶ
 struct LoginLoadingView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @ObservedObject private var webSocketManager = WebSocketManager()
+    @ObservedObject var websocketmanager = WebSocketManager()
     @State private var GoToHomepage = false
     
     var body: some View {
@@ -23,8 +23,8 @@ struct LoginLoadingView: View {
             .onAppear{
                 getUserID()
             }
-            .navigationDestination(isPresented: $webSocketManager.isConnected){
-                HomepageView()
+            .navigationDestination(isPresented: $websocketmanager.isConnected){
+                HomepageView(websocketmanager: websocketmanager)
             }
         }
     }
@@ -50,7 +50,7 @@ struct LoginLoadingView: View {
                             DispatchQueue.main.async {
                                 print("user_id: \(userId)")
                                 wholeappafterloginmodel.userID = userId // userIDを更新
-                                webSocketManager.receiver = userId
+                                websocketmanager.receiver = userId
                                 getUserProfile()
                                 getWebSocketConnection()
                             }
@@ -118,7 +118,7 @@ struct LoginLoadingView: View {
     }
     
     func getWebSocketConnection(){
-        webSocketManager.setupWebSocket() //接続
+        websocketmanager.setupWebSocket() //接続
     }
     
 }

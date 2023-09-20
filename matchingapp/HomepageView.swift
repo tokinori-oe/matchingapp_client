@@ -10,35 +10,30 @@ import SwiftUI
 struct HomepageView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var userID : Int?
+    @ObservedObject var websocketmanager : WebSocketManager
     
     var body: some View {
         NavigationStack{
             TabView(selection: $wholeappafterloginmodel.selectedTag) {
-                AccountListView().tabItem { Button("アカウント情報"){
+                AccountListView(websocketmanager: websocketmanager).tabItem { Button("アカウント情報"){
                     
                 }
                 }.tag(1)
-                MatchUpView().tabItem { Text("マッチアップ") }.tag(2)
-                NotificationView().tabItem { Text("通知")}.tag(3)
-                ChatView().tabItem{Text("チャット")}.tag(4)
-                FeedView().tabItem{Text("ホーム")}.tag(5)
+                MatchUpView(websocketmanager: websocketmanager).tabItem { Text("マッチアップ") }.tag(2)
+                NotificationView(websocketmanager: websocketmanager).tabItem { Text("通知")}.tag(3)
+                ChatView(websocketmanager: websocketmanager).tabItem{Text("チャット")}.tag(4)
+                FeedView(websocketmanager: websocketmanager).tabItem{Text("ホーム")}.tag(5)
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $wholeappafterloginmodel.GoToProfileChangeView){
-                ProfileChangeView()
+                ProfileChangeView(websocketmanager: websocketmanager)
             }
             .navigationDestination(isPresented: $wholeappafterloginmodel.GoToLogout){
-                LogoutLoadingView()
+                LogoutLoadingView(websocketmanager: websocketmanager)
             }
             .navigationBarHidden(true)
         }
     }
     
     
-}
-
-struct HomepageView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomepageView()
-    }
 }

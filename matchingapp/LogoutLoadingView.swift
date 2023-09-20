@@ -4,7 +4,7 @@ import Starscream
 //この画面でuser_id, プロフィール情報、websocket接続を行う。全て完了したらHomePageViewに飛ぶ
 struct LogoutLoadingView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @ObservedObject private var webSocketManager = WebSocketManager()
+    @ObservedObject var websocketmanager : WebSocketManager
     
     var body: some View {
         NavigationStack{
@@ -20,9 +20,9 @@ struct LogoutLoadingView: View {
             .padding()
             .navigationBarBackButtonHidden(true)
             .onAppear{
-                webSocketManager.disconnectWebSocket()
+                websocketmanager.disconnectWebSocket()
             }
-            .navigationDestination(isPresented: $webSocketManager.disConnected){
+            .navigationDestination(isPresented: $websocketmanager.disConnected){
                 LoginView()
             }
         }

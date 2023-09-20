@@ -10,6 +10,7 @@ import SwiftUI
 struct AccountListView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var LogoutButtonClicked = true
+    @ObservedObject var websocketmanager : WebSocketManager
     var body: some View {
         NavigationStack{
             if wholeappafterloginmodel.getInfoAboutAccount{
@@ -43,11 +44,5 @@ struct AccountListView: View {
         }.onAppear{
             wholeappafterloginmodel.GoToProfileChangeView = false
         }
-    }
-}
-
-struct AccountListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountListView()
     }
 }
