@@ -4,7 +4,7 @@ import Starscream
 //この画面でuser_id, プロフィール情報、websocket接続を行う。全て完了したらHomePageViewに飛ぶ
 struct LoginLoadingView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @ObservedObject var websocketmanager = WebSocketManager()
+    @EnvironmentObject var websocketmanager : WebSocketManager
     @State private var GoToHomepage = false
     
     var body: some View {
@@ -24,7 +24,7 @@ struct LoginLoadingView: View {
                 getUserID()
             }
             .navigationDestination(isPresented: $websocketmanager.isConnected){
-                HomepageView(websocketmanager: websocketmanager)
+                HomepageView()
             }
         }
     }

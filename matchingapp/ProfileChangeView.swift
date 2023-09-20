@@ -11,7 +11,7 @@ struct ProfileChangeView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State var isDoneChanged = false
     @State var BackToAccountCheck = false
-    @ObservedObject var websocketmanager : WebSocketManager
+    @EnvironmentObject var websocketmanager : WebSocketManager
     var body: some View {
         NavigationStack{
             VStack{
@@ -93,10 +93,10 @@ struct ProfileChangeView: View {
                     Button("変更する", action: changeprofile)
                 }
             }.navigationDestination(isPresented: $isDoneChanged){
-                HomepageView(websocketmanager: websocketmanager)
+                HomepageView()
             }
             .navigationDestination(isPresented: $BackToAccountCheck){
-                HomepageView(websocketmanager: websocketmanager)
+                HomepageView()
             }
             .navigationBarBackButtonHidden(true)
             .toolbar{

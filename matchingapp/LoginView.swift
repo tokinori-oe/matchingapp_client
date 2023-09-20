@@ -14,6 +14,7 @@ struct LoginView: View {
     @State var message=""
     @State var isLoggedin = false
     @StateObject var wholeappafterloginmodel = WholeAppAfterLoginModel()
+    @StateObject var websocketmanager = WebSocketManager()
     
     var body: some View {
         NavigationStack{
@@ -60,6 +61,7 @@ struct LoginView: View {
                 .navigationDestination(isPresented: $isLoggedin){
                 LoginLoadingView()
                 .environmentObject(wholeappafterloginmodel)
+                .environmentObject(websocketmanager)
             }
             .navigationBarBackButtonHidden(true)
         }

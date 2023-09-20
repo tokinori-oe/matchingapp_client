@@ -10,7 +10,7 @@ import SwiftUI
 struct AccountListView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var LogoutButtonClicked = true
-    @ObservedObject var websocketmanager : WebSocketManager
+    @EnvironmentObject var websocketmanager : WebSocketManager
     var body: some View {
         NavigationStack{
             if wholeappafterloginmodel.getInfoAboutAccount{

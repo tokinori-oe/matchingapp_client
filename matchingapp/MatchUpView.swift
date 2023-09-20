@@ -12,7 +12,7 @@ struct MatchUpView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
     @State private var userProfiles: [UserProfileData] = []
     @State private var isButtonClicked = false
-    @ObservedObject var websocketmanager : WebSocketManager
+    @EnvironmentObject var websocketmanager : WebSocketManager
     var body: some View {
         VStack{
             if getRecommendationInfo{
