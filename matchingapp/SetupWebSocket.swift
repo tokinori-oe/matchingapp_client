@@ -24,6 +24,9 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     @Published var receiver: Int = 0
     @Published var isConnected = false
     @Published var disConnected = true
+    //@Published var ListOfCandidate :[UserProfileData] = []
+    @Published var ListOfRequest :[DataOfRequest] = []
+    @Published var ListOfMessage :[DataOfChat] = []
     
     //init() {
         //setupWebSocket()
@@ -60,11 +63,44 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
         case .connected:
             isConnected = true
             disConnected = false
-        case .disconnected(_, _): //切断の原因や詳細情報は、パラメータとして提供されますが、コード内でそれらの情報を使用しない場合、_（アンダースコア）を使用して無視することができる
+        case .disconnected(_, _):
             isConnected = false
             disConnected = true
-        case .text(let string): //WebSocketManagerがテキストメッセージを受信したときに、そのメッセージを受信プロパティである receivedMessage に代入
-            receivedMessage = string
+        case .text(let jsonString):
+            if let data = jsonString.data(using: .utf8){
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                do {
+                    let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    if let dictionary = dictionary {
+                        if let content = dictionary["content"] as? String{
+                            if content == "Request"{
+                                //オブジェクトを作成(これはリクエスト一覧で表示するためのオブジェクト)
+                                let request = DataOfRequest(
+                                    content: dictionary["content"] as? String,
+                                    school_name : dictionary["school_name"] as? String,
+                                    faculty: dictionary["faculty"] as? String,
+                                    department: dictionary["department"] as? String,
+                                    grade: dictionary["grade"] as? String,
+                                    hobbies: dictionary["hobbies"] as? String,
+                                    age: dictionary["age"] as? Int,
+                                    profile: dictionary["profile"] as? String,
+                                    date : dictionary["date"] as? Date
+                                )
+                            }
+                            else if content == "Mail"{
+                                
+                            }
+                            else{
+                                
+                            }
+                        }
+                    }
+
+                }catch{
+                    print("JSONデコードエラー: \(error)")
+                }
+            }
         default:
             break
         }
