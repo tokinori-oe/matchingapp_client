@@ -27,22 +27,25 @@ struct MatchUpView: View {
             else{
                 Text("Error")
             }
-        }.alert(isPresented: $isButtonClicked){
+        }.alert(isPresented: $wholeappafterloginmodel.isRequestButtonClicked){
             Alert(title: Text("本当に送信しますか？"),
                   primaryButton: .default(Text("送信"), action: {
                 okAction()
+                wholeappafterloginmodel.isRequestButtonClicked = false
             }),
-                  secondaryButton: .cancel(Text("キャンセル"),action:{})
+                  secondaryButton: .cancel(Text("キャンセル"),action:{
+                wholeappafterloginmodel.isRequestButtonClicked = false
+            })
             )
         }
         .onAppear{
             GetRecommendation()
+            print(wholeappafterloginmodel.userID)
         }
     }
     
     func okAction(){
-        
-    }
+        }
     
     func GetRecommendation(){
         

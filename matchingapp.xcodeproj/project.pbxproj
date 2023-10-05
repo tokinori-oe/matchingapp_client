@@ -24,12 +24,12 @@
 		B8BBF7E32AB088CA00BEF342 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7E22AB088CA00BEF342 /* ChatView.swift */; };
 		B8BBF7E52AB0896200BEF342 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7E42AB0896200BEF342 /* FeedView.swift */; };
 		B8BBF7E72AB2EC7100BEF342 /* SetupWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7E62AB2EC7100BEF342 /* SetupWebSocket.swift */; };
-		B8BBF7EA2AB2F08D00BEF342 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = B8BBF7E92AB2F08D00BEF342 /* Starscream */; };
 		B8BBF7EC2AB3E67700BEF342 /* LogoutLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7EB2AB3E67700BEF342 /* LogoutLoadingView.swift */; };
 		B8BBF7EE2AB3E85500BEF342 /* LoginLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7ED2AB3E85500BEF342 /* LoginLoadingView.swift */; };
 		B8BBF7F12AB4379800BEF342 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B8BBF7F02AB4379800BEF342 /* Lottie */; };
 		B8BBF7F32AB45A7000BEF342 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF7F22AB45A7000BEF342 /* LottieView.swift */; };
 		B8BBF7F92AB45D4900BEF342 /* whiteblue_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B8BBF7F82AB45D4900BEF342 /* whiteblue_loading.json */; };
+		B8BBF8242ACAEDD000BEF342 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = B8BBF8232ACAEDD000BEF342 /* Starscream */; };
 		B8BC490E2AA45F8E00AA04CD /* SelectFacultyAndDepartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC490D2AA45F8E00AA04CD /* SelectFacultyAndDepartment.swift */; };
 		B8BC493E2AA5980300AA04CD /* OtherInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC493D2AA5980300AA04CD /* OtherInfoView.swift */; };
 		B8BC49402AA5FC8900AA04CD /* CheckWholeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC493F2AA5FC8900AA04CD /* CheckWholeInfoView.swift */; };
@@ -78,8 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8BBF7EA2AB2F08D00BEF342 /* Starscream in Frameworks */,
 				B8BBF7F12AB4379800BEF342 /* Lottie in Frameworks */,
+				B8BBF8242ACAEDD000BEF342 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,8 +163,8 @@
 			);
 			name = matchingapp;
 			packageProductDependencies = (
-				B8BBF7E92AB2F08D00BEF342 /* Starscream */,
 				B8BBF7F02AB4379800BEF342 /* Lottie */,
+				B8BBF8232ACAEDD000BEF342 /* Starscream */,
 			);
 			productName = matchingapp;
 			productReference = B82596352A9C7B0B0003A079 /* matchingapp.app */;
@@ -195,8 +195,8 @@
 			);
 			mainGroup = B825962C2A9C7B0B0003A079;
 			packageReferences = (
-				B8BBF7E82AB2F08D00BEF342 /* XCRemoteSwiftPackageReference "Starscream" */,
 				B8BBF7EF2AB4379800BEF342 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				B8BBF8222ACAEDD000BEF342 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = B82596362A9C7B0B0003A079 /* Products */;
 			projectDirPath = "";
@@ -453,14 +453,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B8BBF7E82AB2F08D00BEF342 /* XCRemoteSwiftPackageReference "Starscream" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/daltoniam/Starscream";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 		B8BBF7EF2AB4379800BEF342 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -469,18 +461,26 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		B8BBF8222ACAEDD000BEF342 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B8BBF7E92AB2F08D00BEF342 /* Starscream */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8BBF7E82AB2F08D00BEF342 /* XCRemoteSwiftPackageReference "Starscream" */;
-			productName = Starscream;
-		};
 		B8BBF7F02AB4379800BEF342 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8BBF7EF2AB4379800BEF342 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		B8BBF8232ACAEDD000BEF342 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8BBF8222ACAEDD000BEF342 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

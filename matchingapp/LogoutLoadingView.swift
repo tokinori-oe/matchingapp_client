@@ -11,16 +11,14 @@ struct LogoutLoadingView: View {
             VStack {
                 LottieView(name:"whiteblue_loading")
                     .frame(width: 100.0, height: 100.0)
-                Text("Now loading...")
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(nil)
-                    .frame(width: nil)
             }
             .padding()
-            .navigationBarBackButtonHidden(true)
+            //iris.navigationBarBackButtonHidden(true)
             .onAppear{
                 websocketmanager.disconnectWebSocket()
+                //要訂正
+                websocketmanager.disConnected = true
+                websocketmanager.isConnected = false
             }
             .navigationDestination(isPresented: $websocketmanager.disConnected){
                 LoginView()

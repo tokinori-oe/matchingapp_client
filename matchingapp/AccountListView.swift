@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountListView: View {
     @EnvironmentObject var wholeappafterloginmodel : WholeAppAfterLoginModel
-    @State private var LogoutButtonClicked = true
+    @State private var LogoutButtonClicked = false
     @EnvironmentObject var websocketmanager : WebSocketManager
     var body: some View {
         NavigationStack{
@@ -26,7 +26,7 @@ struct AccountListView: View {
                             LogoutButtonClicked = true
                         }
                     }
-                }.alert(isPresented: $wholeappafterloginmodel.GoToLogout){
+                }.alert(isPresented: $LogoutButtonClicked){
                     Alert(title: Text("本当にログアウトしますか？"),
                           primaryButton: .default(Text("ログアウト"), action: {
                         wholeappafterloginmodel.GoToLogout = true

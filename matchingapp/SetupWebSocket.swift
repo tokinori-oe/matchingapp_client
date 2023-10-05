@@ -33,7 +33,7 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     //}
 
     func setupWebSocket() {
-        if let url = URL(string: "ws://localhost:8080/request_path/\(receiver)/") {
+        if let url = URL(string: "ws://127.0.0.1:8000/request_path/\(receiver)/") {
             socket = WebSocket(request: URLRequest(url: url))
             socket?.delegate = self // WebSocketManagerをWebSocketDelegateに設定
             //StarscreamではWebsocketクラスが準備されており、WebSocket インスタンスの connect() メソッドを呼び出し、WebSocketサーバーへの実際の接続を試みる。接続が確立されると、WebSocketManagerの didReceive(event: WebSocketEvent, client: WebSocketClient) メソッドが呼び出され、接続状態が変化したことを検出することができる。
@@ -58,14 +58,16 @@ class WebSocketManager: ObservableObject, WebSocketDelegate {
     }
 
     // WebSocketDelegateの要件を実装
-    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient){
+    func didReceive(event: WebSocketEvent, client: WebSocketClient){
         switch event {
         case .connected:
             isConnected = true
             disConnected = false
-        case .disconnected(_, _):
+            print("Connected")
+        case .disconnected:
             isConnected = false
             disConnected = true
+            print(disConnected)
         case .text(let jsonString):
             if let data = jsonString.data(using: .utf8){
                     let decoder = JSONDecoder()

@@ -60,8 +60,6 @@ struct LoginView: View {
             }
                 .navigationDestination(isPresented: $isLoggedin){
                 LoginLoadingView()
-                .environmentObject(wholeappafterloginmodel)
-                .environmentObject(websocketmanager)
             }
             .navigationBarBackButtonHidden(true)
         }

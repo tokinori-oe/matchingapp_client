@@ -23,4 +23,6 @@ class WholeAppAfterLoginModel: ObservableObject{
     @Published var isAcccessedToMatchUp = false
     @Published var GoToLogout = false
     @Published var getInfoAboutAccount = false
+    @Published var LogoutButtonClicked = false
+    @Published var isRequestButtonClicked = false
 }
